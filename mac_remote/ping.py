@@ -9,6 +9,9 @@ class EndlessPing():
     def __init__(self, commander_url: str) -> None:
         self.target = commander_url + 'ping'
         while True:
-            payload = get_summary()
-            httpx.post(self.target, json=payload)
+            try:
+                payload = get_summary()
+                httpx.post(self.target, json=payload)
+            except Exception:
+                pass
             time.sleep(30)
