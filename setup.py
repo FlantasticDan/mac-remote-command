@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="mac-remote-command",
-    version="0.0.3",
+    version="0.0.4",
     author="Daniel Flanagan",
     description="Client for embedded systems to facilitate remote configuration.",
     long_description=long_description,
@@ -18,6 +18,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Development Status :: 3 - Alpha"
     ],
     packages=setuptools.find_packages(),
     python_requires=">=3.9",
