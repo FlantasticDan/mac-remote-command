@@ -30,7 +30,7 @@ cd <directory>
 . venv/bin/activate
 python -m mac_remote.ping
 ```
-2. Modify the script so it is executable: `sudo chmod x+ start-mac-remote-ping.sh`
+2. Modify the script so it is executable: `sudo chmod +x start-mac-remote-ping.sh`
 3. Create a service the run the script at startup by writing the following file at `/etc/systemd/system/mac-remote-ping.service`:
 ```
 [Unit]
