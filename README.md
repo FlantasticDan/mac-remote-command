@@ -20,3 +20,33 @@ Currently the remote command functionality of the package is undeveloped.  Right
 ```bash
 python -m mac_remote.ping
 ```
+
+### Starting Remote Ping On Boot (Ubuntu)
+Linux allows Python modules to be executed as part of a startup service.  These instructions assume MAC Remote Command is installed in a virtual environment.
+1. Create a `start-mac-remote-ping.sh` script which activates the virtual environment and then starts the MAC Remote Command:
+```bash
+#!/bin/bash
+cd <directory>
+. venv/bin/activate
+python -m mac_remote.ping
+```
+2. Modify the script so it is executable: `sudo chmod x+ start-mac-remote-ping.sh`
+3. Create a service the run the script at startup by writing the following file at `/etc/systemd/system/mac-remote-ping.service`:
+```
+[Unit]
+Description=MAC Remote Command Pinger
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=<username>
+ExecStart=/path/to/start-mac-remote-ping.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+4. Enable the startup service: `systemctl enable mac-remote-ping`
+5. Reboot
